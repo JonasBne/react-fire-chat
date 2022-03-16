@@ -11,7 +11,7 @@ const typeDefs = gql`
     content: String!
   }
   type AddMessagePayload {
-    id: ID!
+    message: Message!
   }
 
   type Query {
@@ -23,7 +23,7 @@ const typeDefs = gql`
   }
 `;
 
-const messages = [];
+let messages = [];
 
 const resolvers = {
   Query: {
@@ -31,13 +31,20 @@ const resolvers = {
   },
   Mutation: {
     addMessage: (root, { input }) => {
-      const id = messages.length;
+      const messageId = messages.length;
       messages.push({
-        id,
+        id: messageId,
         user: input.user,
         content: input.content,
       });
-      return id;
+      console.log('messages', messages);
+      return {
+        message: {
+          id: messageId,
+          user: input.user,
+          content: input.content,
+        },
+      };
     },
   },
 };
