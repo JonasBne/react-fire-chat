@@ -1,9 +1,10 @@
 const { ApolloServer, gql } = require('apollo-server-express');
+const { initializeApp } = require('firebase-admin/app');
 const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
 const express = require('express');
 
-const firebaseClient = firebase.initializeApp({
+const firebaseClient = initializeApp({
   apiKey: process.env.REACT_APP_APIKEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   databaseURL: process.env.REACT_APP_DATABASE_URL,

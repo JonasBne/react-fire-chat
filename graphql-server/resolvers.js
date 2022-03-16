@@ -1,3 +1,5 @@
+const baseURL = process.env.REACT_APP_DATABASE_URL;
+
 const resolvers = {
   Query: {
     messages: () => messages,
