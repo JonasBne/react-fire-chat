@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
+import { GetMessagesQuery } from '../../graphql/types';
 
 const GET_MESSAGES = gql`
   query getMessages {
@@ -12,7 +13,7 @@ const GET_MESSAGES = gql`
 `;
 
 function Messages() {
-  const { data } = useQuery(GET_MESSAGES);
+  const { data } = useQuery<GetMessagesQuery>(GET_MESSAGES);
 
   if (!data) return null;
 
