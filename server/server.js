@@ -1,39 +1,19 @@
-const { GraphQLServer } = require('graphql-yoga');
+const { ApolloServer } = require('apollo-server-express');
+const schema = require('./schema');
 
-// const messages = [];
+const graphQlServer = new ApolloServer({
+  schema,
+  formatError: (error) => {
+    // console.log(error);
+    // return new Error('Internal server error');
+    // Or, you can delete the exception information
+    // delete error.extensions.exception;
+    return error;
+  },
+  introspection: true,
+  playground: true,
+});
 
-// const typeDefs = `
-// type Message {
-//   id: ID!
-//   user: String!
-//   content: String!
-// }
-
-// type Query {
-//   messages: [Message!]
-// }
-
-// type Mutation {
-//   postMessage(user: String!, content: String!): ID!
-// }
-// `;
-// const resolvers = {
-//   Query: {
-//     messages: () => messages,
-//   },
-//   Mutation: {
-//     postMessage: (root, { user, content }) => {
-//       const id = messages.length;
-//       messages.push({
-//         id,
-//         user,
-//         content,
-//       });
-//       return id;
-//     },
-//   },
-// };
-
-const server = new GraphQLServer({ typeDefs, resolvers });
-
-server.start(({ port }) => console.log(`server listens on  http://localhost:${port} for requests...`));
+graphQlServer.listen().then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`);
+});

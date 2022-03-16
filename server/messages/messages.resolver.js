@@ -1,3 +1,5 @@
+const messages = [];
+
 const resolvers = {
   Query: {
     messages: () => messages,
