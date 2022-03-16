@@ -18,6 +18,7 @@
     "firebase": "^9.6.8",
     "firebase-admin": "^10.0.2",
     "graphql": "^16.3.0",
+    "node-fetch": "^3.2.3",
     "nodemon": "^2.0.15"
   }
 }
