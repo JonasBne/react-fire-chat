@@ -1,19 +1,20 @@
-const typeDefs = `
-type Message {
-  id: ID!
-  user: String!
-  content: String!
-}
+const { gql } = require('apollo-server');
 
-type MessageInput {
-  user: String!
-  content: String!
-}
+const typeDefs = gql`
+  type Message {
+    id: ID!
+    user: String!
+    content: String!
+  }
 
-type AddMessagePayload {
-  id: ID!
-}
+  type MessageInput {
+    user: String!
+    content: String!
+  }
 
+  type AddMessagePayload {
+    id: ID!
+  }
 `;
 
 module.exports = typeDefs;
