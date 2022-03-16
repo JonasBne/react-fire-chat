@@ -1,4 +1,4 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "client/tsconfig.eslint.json",
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "test/**/*.ts", "src/App.tsx", "src/index.tsx"]
 }
