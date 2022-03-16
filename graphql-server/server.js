@@ -3,11 +3,11 @@ const { ApolloServer, gql } = require('apollo-server');
 const typeDefs = gql`
   type Message {
     id: ID!
-    user: String!
+    sender: String!
     content: String!
   }
   input MessageInput {
-    user: String!
+    sender: String!
     content: String!
   }
   type AddMessagePayload {
@@ -34,13 +34,13 @@ const resolvers = {
       const messageId = messages.length;
       messages.push({
         id: messageId,
-        user: input.user,
+        sender: input.sender,
         content: input.content,
       });
       return {
         message: {
           id: messageId,
-          user: input.user,
+          sender: input.sender,
           content: input.content,
         },
       };
