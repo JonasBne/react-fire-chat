@@ -4,26 +4,23 @@ import { useQuery } from '@apollo/client';
 import { GetMessagesQuery } from '../../graphql/types';
 import { GET_MESSAGES } from '../../graphql/queries';
 
-// TODO: remove this optional character
 interface MessagesProps {
-  user?: string;
+  user: string;
 }
-
-// TODO: remove this disable
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function Messages({ user = 'Jonas' }: MessagesProps) {
+function Messages({ user }: MessagesProps) {
   const { data } = useQuery<GetMessagesQuery>(GET_MESSAGES);
 
   if (!data) return null;
 
   return (
-    // TODO: remove this disable
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>
+    <div>
       {data.messages?.map((message) => (
-        <div>{message.content}</div>
+        <div key={message.id} className="flex">
+          <div className="text-2xl font-bold underline">{message.content}</div>
+        </div>
       ))}
-    </>
+    </div>
   );
 }
 
