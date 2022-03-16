@@ -12,6 +12,10 @@
   },
   "dependencies": {
     "apollo-server": "^3.6.4",
+    "apollo-server-express": "^3.6.4",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "firebase": "^9.6.8",
     "graphql": "^16.3.0",
     "nodemon": "^2.0.15"
   }
