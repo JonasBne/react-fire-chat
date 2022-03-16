@@ -3,6 +3,7 @@ const { initializeApp } = require('firebase-admin/app');
 const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
 const express = require('express');
+require('dotenv').config();
 
 const firebaseClient = initializeApp({
   apiKey: process.env.REACT_APP_APIKEY,

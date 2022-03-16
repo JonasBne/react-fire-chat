@@ -1,5 +1,6 @@
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
-
+const userProfile = require('./firebase-functions/userProfile');
+require('dotenv').config();
 const baseURL = process.env.REACT_APP_DATABASE_URL;
 
 const resolvers = {
