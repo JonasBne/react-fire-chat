@@ -9,8 +9,25 @@ interface MessagesProps {
   user: string;
 }
 
-const MessagesContainer = styled.div({});
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface MessageProps {
+  messageUser: string;
+  user: string;
+}
+
+const MessagesContainer = styled.div(({ messageUser, user }: MessageProps) => ({
+  display: 'flex',
+  paddingBottom: '16px',
+  justifyContent: messageUser === user ? 'flex-end' : 'flex-start',
+}));
+
+const Message = styled.div(({ messageUser, user }: MessageProps) => ({
+  background: messageUser === user ? '#58bf56' : '#e5e6ea',
+  color: messageUser === user ? 'white' : 'black',
+  padding: '16px',
+  borderRadius: '32px',
+  maxWidth: '60%',
+}));
+
 function Messages({ user }: MessagesProps) {
   const { data } = useQuery<GetMessagesQuery>(GET_MESSAGES);
 
@@ -19,9 +36,11 @@ function Messages({ user }: MessagesProps) {
   return (
     <div>
       {data.messages?.map((message) => (
-        <div key={message.id} className="flex">
-          <div className="text-2xl font-bold underline">{message.content}</div>
-        </div>
+        <MessagesContainer key={message.id} messageUser={message.user} user={user}>
+          <Message messageUser={message.user} user={user}>
+            {message.content}
+          </Message>
+        </MessagesContainer>
       ))}
     </div>
   );
