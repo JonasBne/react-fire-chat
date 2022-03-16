@@ -5,7 +5,7 @@ type AddMessagePayload {
 type Message {
   content: String!
   id: ID!
-  user: String!
+  sender: String!
 }
 
 input MessageInput {

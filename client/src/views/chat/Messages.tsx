@@ -3,44 +3,32 @@ import { useQuery } from '@apollo/client';
 import styled from '@emotion/styled';
 import { GetMessagesQuery } from '../../graphql/types';
 import { GET_MESSAGES } from '../../graphql/queries';
+import UserAvatar from './User';
 
 interface MessagesProps {
-  user: string;
+  recipient: string;
 }
 
 interface MessageProps {
-  messageUser: string;
-  user: string;
+  sender: string;
+  recipient: string;
 }
 
-const MessagesContainer = styled.div(({ messageUser, user }: MessageProps) => ({
+const MessagesContainer = styled.div(({ sender, recipient }: MessageProps) => ({
   display: 'flex',
   paddingBottom: '16px',
-  justifyContent: messageUser === user ? 'flex-end' : 'flex-start',
+  justifyContent: sender === recipient ? 'flex-end' : 'flex-start',
 }));
 
-const Message = styled.div(({ messageUser, user }: MessageProps) => ({
-  background: messageUser === user ? '#58bf56' : '#e5e6ea',
-  color: messageUser === user ? 'white' : 'black',
+const Message = styled.div(({ sender, recipient }: MessageProps) => ({
+  background: sender === recipient ? '#58bf56' : '#e5e6ea',
+  color: sender === recipient ? 'white' : 'black',
   padding: '16px',
   borderRadius: '32px',
   maxWidth: '60%',
 }));
 
-const User = styled.div({
-  height: 50,
-  width: 50,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginRight: '12px',
-  border: '2px solid #e5e6ea',
-  borderRadius: '50%',
-  textAlign: 'center',
-  fontWeight: 'bold',
-});
-
-function Messages({ user }: MessagesProps) {
+function Messages({ recipient }: MessagesProps) {
   const { data } = useQuery<GetMessagesQuery>(GET_MESSAGES);
 
   if (!data) return null;
@@ -48,9 +36,9 @@ function Messages({ user }: MessagesProps) {
   return (
     <div>
       {data.messages?.map((message) => (
-        <MessagesContainer key={message.id} messageUser={message.user} user={user}>
-          {user !== message.user && <User>{message.user.slice(0, 2).toUpperCase()}</User>}
-          <Message messageUser={message.user} user={user}>
+        <MessagesContainer key={message.id} sender={message.sender} recipient={recipient}>
+          {recipient !== message.sender && <UserAvatar messageUser={message.sender} />}
+          <Message sender={message.sender} recipient={recipient}>
             {message.content}
           </Message>
         </MessagesContainer>

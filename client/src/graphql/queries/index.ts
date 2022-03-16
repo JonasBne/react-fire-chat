@@ -5,7 +5,7 @@ export const GET_MESSAGES = gql`
   query getMessages {
     messages {
       id
-      user
+      sender
       content
     }
   }
