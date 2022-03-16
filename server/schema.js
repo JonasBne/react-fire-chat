@@ -1,3 +1,5 @@
+const graphqlTools = require('graphql-tools');
+
 const { typeDefs: Messages, resolvers: messageResolvers } = require('./messages');
 
 const Query = `
@@ -15,3 +17,10 @@ type Mutation {
   postMessage(AddMessageInput!): AddMessagePayload!
 }
 `;
+
+const schema = graphqlTools.makeExecutableSchema({
+  typeDefs: [Query, Mutation, Messages],
+  resolvers: [messageResolvers],
+});
+
+module.exports = schema;
