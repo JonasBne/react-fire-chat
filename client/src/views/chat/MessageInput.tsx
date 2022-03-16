@@ -4,7 +4,7 @@ import { Send } from '@emotion-icons/boxicons-solid/Send';
 import FlexBox from '../../components/FlexBox';
 
 interface MessageInputProps {
-  onKeyStroke: (evt: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onSend: (message: string) => void;
 }
 
 const Wrapper = styled(FlexBox)({
@@ -28,10 +28,17 @@ const Input = styled.textarea({
   padding: '12px',
 });
 
-function MessageInput({ onKeyStroke }: MessageInputProps) {
+function MessageInput({ onSend }: MessageInputProps) {
+  const handleSendMessage = (evt: React.KeyboardEvent) => {
+    if (evt.key === 'Enter') {
+      const target = evt.target as HTMLTextAreaElement;
+      onSend(target.value.trim());
+    }
+  };
+
   return (
     <Wrapper>
-      <Input id="message-input" name="message-input" onChange={(evt) => onKeyStroke(evt)} />
+      <Input id="message-input" name="message-input" onKeyUp={handleSendMessage} />
       <SendIcon size="24" />
     </Wrapper>
   );

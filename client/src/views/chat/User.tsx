@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 interface UserAvatarProps {
-  messageUser: string;
+  sender: string;
 }
 
 const User = styled.div({
@@ -18,8 +18,8 @@ const User = styled.div({
   fontWeight: 'bold',
 });
 
-function UserAvatar({ messageUser }: UserAvatarProps) {
-  const userInitials = messageUser.slice(0, 2).toUpperCase();
+function UserAvatar({ sender }: UserAvatarProps) {
+  const userInitials = sender.slice(0, 2).toUpperCase();
 
   return <User>{userInitials}</User>;
 }

@@ -37,7 +37,7 @@ function Messages({ recipient }: MessagesProps) {
     <div>
       {data.messages?.map((message) => (
         <MessagesContainer key={message.id} sender={message.sender} recipient={recipient}>
-          {recipient !== message.sender && <UserAvatar messageUser={message.sender} />}
+          {recipient !== message.sender && <UserAvatar sender={message.sender} />}
           <Message sender={message.sender} recipient={recipient}>
             {message.content}
           </Message>

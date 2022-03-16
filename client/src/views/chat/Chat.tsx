@@ -17,17 +17,17 @@ function Chat() {
     content: '',
   });
 
-  const handleTypeMessage = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleSendMessage = (message: string) => {
     setConversation((prevConversation) => ({
       ...prevConversation,
-      content: evt.target.value,
+      content: message,
     }));
   };
 
   return (
     <ChatBox>
       <Messages recipient={conversation.recipient} />
-      <MessageInput onKeyStroke={handleTypeMessage} />
+      <MessageInput onSend={handleSendMessage} />
     </ChatBox>
   );
 }
