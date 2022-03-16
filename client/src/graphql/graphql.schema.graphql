@@ -10,7 +10,7 @@ type Message {
 
 input MessageInput {
   content: String!
-  user: String!
+  sender: String!
 }
 
 type Mutation {

@@ -137,7 +137,7 @@
             "deprecationReason": null
           },
           {
-            "name": "user",
+            "name": "sender",
             "description": null,
             "type": {
               "kind": "NON_NULL",

@@ -29,7 +29,7 @@ export type Message = {
 
 export type MessageInput = {
   content: Scalars['String'];
-  user: Scalars['String'];
+  sender: Scalars['String'];
 };
 
 export type Mutation = {
@@ -53,6 +53,18 @@ export type GetMessagesQuery = {
   messages?: Array<{ __typename?: 'Message'; id: string; sender: string; content: string }> | null;
 };
 
+export type AddMessageMutationVariables = Exact<{
+  input: MessageInput;
+}>;
+
+export type AddMessageMutation = {
+  __typename?: 'Mutation';
+  addMessage: {
+    __typename?: 'AddMessagePayload';
+    message: { __typename?: 'Message'; id: string; sender: string; content: string };
+  };
+};
+
 export const GetMessagesDocument = gql`
   query getMessages {
     messages {
@@ -63,3 +75,17 @@ export const GetMessagesDocument = gql`
   }
 `;
 export type GetMessagesQueryResult = Apollo.QueryResult<GetMessagesQuery, GetMessagesQueryVariables>;
+export const AddMessageDocument = gql`
+  mutation addMessage($input: MessageInput!) {
+    addMessage(input: $input) {
+      message {
+        id
+        sender
+        content
+      }
+    }
+  }
+`;
+export type AddMessageMutationFn = Apollo.MutationFunction<AddMessageMutation, AddMessageMutationVariables>;
+export type AddMessageMutationResult = Apollo.MutationResult<AddMessageMutation>;
+export type AddMessageMutationOptions = Apollo.BaseMutationOptions<AddMessageMutation, AddMessageMutationVariables>;

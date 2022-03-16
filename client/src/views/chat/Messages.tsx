@@ -29,6 +29,7 @@ const Message = styled.div(({ sender, recipient }: MessageProps) => ({
 }));
 
 function Messages({ recipient }: MessagesProps) {
+  // TODO: move this to chat
   const { data } = useQuery<GetMessagesQuery>(GET_MESSAGES);
 
   if (!data) return null;

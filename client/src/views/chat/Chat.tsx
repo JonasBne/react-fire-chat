@@ -1,5 +1,8 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { AddMessageMutation, AddMessageMutationVariables } from '../../graphql/types';
+import { ADD_MESSAGE, GET_MESSAGES } from '../../graphql/queries';
 import MessageInput from './MessageInput';
 import Messages from './Messages';
 
@@ -17,6 +20,14 @@ function Chat() {
     content: '',
   });
 
+  const [addMessage] = useMutation<AddMessageMutation, AddMessageMutationVariables>(ADD_MESSAGE, {
+    refetchQueries: [
+      {
+        query: GET_MESSAGES,
+      },
+    ],
+  });
+
   const handleTypeMessage = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     setConversation((prevConversation) => ({
       ...prevConversation,
@@ -26,11 +37,19 @@ function Chat() {
 
   const handleSendMessage = () => {
     if (conversation.content.trim().length > 0) {
-      setConversation((prevConversation) => ({
-        ...prevConversation,
-        content: '',
-      }));
+      addMessage({
+        variables: {
+          input: {
+            sender: 'Jonas',
+            content: conversation.content,
+          },
+        },
+      });
     }
+    setConversation((prevConversation) => ({
+      ...prevConversation,
+      content: '',
+    }));
   };
 
   return (
