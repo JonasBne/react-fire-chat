@@ -1,12 +1,23 @@
 import { gql } from '@apollo/client';
 
-/* eslint-disable import/prefer-default-export */
 export const GET_MESSAGES = gql`
   query getMessages {
     messages {
       id
       sender
       content
+    }
+  }
+`;
+
+export const ADD_MESSAGE = gql`
+  mutation addMessage($input: MessageInput!) {
+    addMessage(input: $input) {
+      message {
+        id
+        sender
+        content
+      }
     }
   }
 `;
