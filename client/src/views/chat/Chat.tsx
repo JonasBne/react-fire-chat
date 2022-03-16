@@ -17,17 +17,26 @@ function Chat() {
     content: '',
   });
 
-  const handleSendMessage = (message: string) => {
+  const handleTypeMessage = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     setConversation((prevConversation) => ({
       ...prevConversation,
-      content: message,
+      content: evt.target.value,
     }));
+  };
+
+  const handleSendMessage = () => {
+    if (conversation.content.trim().length > 0) {
+      setConversation((prevConversation) => ({
+        ...prevConversation,
+        content: '',
+      }));
+    }
   };
 
   return (
     <ChatBox>
       <Messages recipient={conversation.recipient} />
-      <MessageInput onSend={handleSendMessage} />
+      <MessageInput messageContent={conversation.content} onKeyPress={handleTypeMessage} onSend={handleSendMessage} />
     </ChatBox>
   );
 }

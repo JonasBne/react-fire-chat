@@ -4,7 +4,9 @@ import { Send } from '@emotion-icons/boxicons-solid/Send';
 import FlexBox from '../../components/FlexBox';
 
 interface MessageInputProps {
-  onSend: (message: string) => void;
+  messageContent: string;
+  onKeyPress: (evt: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onSend: () => void;
 }
 
 const Wrapper = styled(FlexBox)({
@@ -19,7 +21,7 @@ const SendIcon = styled(Send)({
   margin: '48px auto auto auto',
 });
 
-const Input = styled.textarea({
+const TextArea = styled.textarea({
   display: 'block',
   margin: '48px auto 0 auto',
   width: '80%',
@@ -28,18 +30,27 @@ const Input = styled.textarea({
   padding: '12px',
 });
 
-function MessageInput({ onSend }: MessageInputProps) {
+function MessageInput({ messageContent, onKeyPress, onSend }: MessageInputProps) {
   const handleSendMessage = (evt: React.KeyboardEvent) => {
     if (evt.key === 'Enter') {
-      const target = evt.target as HTMLTextAreaElement;
-      onSend(target.value.trim());
+      onSend();
     }
+  };
+
+  const handleChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onKeyPress(evt);
   };
 
   return (
     <Wrapper>
-      <Input id="message-input" name="message-input" onKeyUp={handleSendMessage} />
-      <SendIcon size="24" />
+      <TextArea
+        id="message-input"
+        name="message-input"
+        value={messageContent}
+        onKeyUp={handleSendMessage}
+        onChange={handleChange}
+      />
+      <SendIcon size="24" onClick={() => onSend()} />
     </Wrapper>
   );
 }
