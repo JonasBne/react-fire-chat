@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useState } from 'react';
 import MessageInput from './MessageInput';
 import Messages from './Messages';
 
@@ -12,10 +12,22 @@ const ChatBox = styled.div({
 });
 
 function Chat() {
+  const [conversation, setConversation] = useState({
+    recipient: 'Jonas',
+    content: '',
+  });
+
+  const handleTypeMessage = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setConversation((prevConversation) => ({
+      ...prevConversation,
+      content: evt.target.value,
+    }));
+  };
+
   return (
     <ChatBox>
-      <Messages recipient="Jonas" />
-      <MessageInput />
+      <Messages recipient={conversation.recipient} />
+      <MessageInput onKeyStroke={handleTypeMessage} />
     </ChatBox>
   );
 }

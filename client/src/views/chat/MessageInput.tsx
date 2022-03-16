@@ -3,6 +3,10 @@ import styled from '@emotion/styled';
 import { Send } from '@emotion-icons/boxicons-solid/Send';
 import FlexBox from '../../components/FlexBox';
 
+interface MessageInputProps {
+  onKeyStroke: (evt: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
 const Wrapper = styled(FlexBox)({
   justifyContent: 'space-around',
 });
@@ -24,10 +28,10 @@ const Input = styled.textarea({
   padding: '12px',
 });
 
-function MessageInput() {
+function MessageInput({ onKeyStroke }: MessageInputProps) {
   return (
     <Wrapper>
-      <Input id="message-input" name="message-input" />
+      <Input id="message-input" name="message-input" onChange={(evt) => onKeyStroke(evt)} />
       <SendIcon size="24" />
     </Wrapper>
   );
