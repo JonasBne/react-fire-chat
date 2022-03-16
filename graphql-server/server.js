@@ -37,7 +37,6 @@ const resolvers = {
         user: input.user,
         content: input.content,
       });
-      console.log('messages', messages);
       return {
         message: {
           id: messageId,
