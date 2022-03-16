@@ -1,12 +1,15 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import styled from '@emotion/styled';
 import { GetMessagesQuery } from '../../graphql/types';
 import { GET_MESSAGES } from '../../graphql/queries';
 
 interface MessagesProps {
   user: string;
 }
+
+const MessagesContainer = styled.div({});
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function Messages({ user }: MessagesProps) {
   const { data } = useQuery<GetMessagesQuery>(GET_MESSAGES);
