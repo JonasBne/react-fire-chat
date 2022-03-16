@@ -1,16 +1,7 @@
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { GetMessagesQuery } from '../../graphql/types';
-
-const GET_MESSAGES = gql`
-  query getMessages {
-    messages {
-      id
-      user
-      content
-    }
-  }
-`;
+import { GET_MESSAGES } from '../../graphql/queries';
 
 function Messages() {
   const { data } = useQuery<GetMessagesQuery>(GET_MESSAGES);
