@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import MessageInput from './MessageInput';
 import Messages from './Messages';
 
 const ChatBox = styled.div({
@@ -14,6 +15,7 @@ function Chat() {
   return (
     <ChatBox>
       <Messages recipient="Jonas" />
+      <MessageInput />
     </ChatBox>
   );
 }
