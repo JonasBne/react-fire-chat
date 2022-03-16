@@ -1,41 +1,39 @@
-const { GraphQLServer } = require("graphql-yoga");
+const { GraphQLServer } = require('graphql-yoga');
 
-const messages = [];
+// const messages = [];
 
-const typeDefs = `
-type Message {
-  id: ID!
-  user: String!
-  content: String!
-}
+// const typeDefs = `
+// type Message {
+//   id: ID!
+//   user: String!
+//   content: String!
+// }
 
-type Query {
-  messages: [Message!]
-}
+// type Query {
+//   messages: [Message!]
+// }
 
-type Mutation {
-  postMessage(user: String!, content: String!): ID!
-}
-`;
-const resolvers = {
-  Query: {
-    messages: () => messages,
-  },
-  Mutation: {
-    postMessage: (root, { user, content }) => {
-      const id = messages.length;
-      messages.push({
-        id,
-        user,
-        content,
-      });
-      return id;
-    },
-  },
-};
+// type Mutation {
+//   postMessage(user: String!, content: String!): ID!
+// }
+// `;
+// const resolvers = {
+//   Query: {
+//     messages: () => messages,
+//   },
+//   Mutation: {
+//     postMessage: (root, { user, content }) => {
+//       const id = messages.length;
+//       messages.push({
+//         id,
+//         user,
+//         content,
+//       });
+//       return id;
+//     },
+//   },
+// };
 
 const server = new GraphQLServer({ typeDefs, resolvers });
 
-server.start(({ port }) =>
-  console.log(`server listens on  http://localhost:${port} for requests...`)
-);
+server.start(({ port }) => console.log(`server listens on  http://localhost:${port} for requests...`));
