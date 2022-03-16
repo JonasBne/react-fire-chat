@@ -1,0 +1,18 @@
+{
+  "users": {
+    "01": {
+      "age": 22,
+      "citizen": true,
+      "email": "watthemehak@gmail.com",
+      "fullName": "Mehak Vohra",
+      "location": "San Francisco, CA"
+    },
+    "02": {
+      "age": 27,
+      "citizen": true,
+      "email": "afakeemail@gmail.com",
+      "fullName": "Andrew Linfoot",
+      "location": "Los Angeles, CA"
+    }
+  }
+}
