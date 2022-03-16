@@ -1,0 +1,14 @@
+{
+  "name": "graphql-server",
+  "version": "1.0.0",
+  "description": "graphql-server",
+  "main": "index.js",
+  "repository": "https://github.com/JonasBne/chat-o-matic.git",
+  "author": "Jonas Boone",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "apollo-server": "^3.6.4",
+    "graphql": "^16.3.0"
+  }
+}
