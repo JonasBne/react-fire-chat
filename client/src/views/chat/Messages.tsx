@@ -2,11 +2,11 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 
 const GET_MESSAGES = gql`
-  query {
+  query getMessages {
     messages {
       id
-      content
       user
+      content
     }
   }
 `;

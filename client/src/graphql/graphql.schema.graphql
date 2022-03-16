@@ -1,0 +1,22 @@
+type AddMessagePayload {
+  message: Message!
+}
+
+type Message {
+  content: String!
+  id: ID!
+  user: String!
+}
+
+input MessageInput {
+  content: String!
+  user: String!
+}
+
+type Mutation {
+  addMessage(input: MessageInput!): AddMessagePayload!
+}
+
+type Query {
+  messages: [Message!]
+}
