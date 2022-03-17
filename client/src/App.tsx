@@ -18,9 +18,9 @@ function App() {
       }}
     >
       <Typography variant="h3" sx={{ fontWeight: 500 }}>
-        FireChat 🔥
+        firechat 🔥
       </Typography>
-      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      {user ? <AuthenticatedApp user={user} /> : <UnauthenticatedApp />}
     </Box>
   );
 }
