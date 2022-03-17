@@ -27,13 +27,14 @@ const resolvers = {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+            id: ,
             sender: input.sender,
             content: input.content,
           }),
         });
-
         console.log(await response.json());
-        return await response.json();
+
+        // return await response.json();
       } catch (err) {
         console.error(`problem when trying to add a message. Error: ${err}`);
       }

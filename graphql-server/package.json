@@ -20,7 +20,8 @@
     "firebase-admin": "^10.0.2",
     "graphql": "^16.3.0",
     "node-fetch": "^3.2.3",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "morgan": "^1.10.0"
