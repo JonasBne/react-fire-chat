@@ -1,14 +1,12 @@
-// TODO; remove this rule
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { User } from '@firebase/auth/dist/auth-public';
 import { useMutation, useQuery } from '@apollo/client';
 import { AddMessageMutation, AddMessageMutationVariables, GetMessagesQuery } from '../../graphql/types';
 import { ADD_MESSAGE, GET_MESSAGES } from '../../graphql/queries';
-import MessageInput from './MessageInput';
-import Messages from './Messages';
+
 import SendMessage from './SendMessage';
+import Message from './Message';
 
 interface ChatRoomProps {
   user: User;
@@ -50,11 +48,8 @@ function ChatRoom({ user }: ChatRoomProps) {
 
   return (
     <>
-      <div>test</div>
+      {messages && messages.map((msg) => <Message content={msg.content} photoUrl={msg.photoUrl} userId={msg.userId} />)}
       <SendMessage message={message} onKeyPress={handleTypeMessage} onSend={handleSendMessage} />
-      {/* {messages && messages.map((msg) => {})} */}
-      {/* <Messages recipient={conversation.recipient} />
-      <MessageInput messageContent={conversation.content} onKeyPress={handleTypeMessage} onSend={handleSendMessage} /> */}
     </>
   );
 }

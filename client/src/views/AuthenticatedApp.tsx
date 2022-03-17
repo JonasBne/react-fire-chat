@@ -1,6 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { User } from '@firebase/auth/dist/auth-public';
+// import 'firebase/auth';
 import ChatRoom from './Chat/ChatRoom';
 import SignOut from './SignOut';
 
@@ -9,7 +10,6 @@ interface AuthenticatedAppProps {
 }
 
 function AuthenticatedApp({ user }: AuthenticatedAppProps) {
-  console.log(user);
   return (
     <>
       <SignOut />
