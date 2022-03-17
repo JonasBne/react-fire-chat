@@ -5,9 +5,9 @@ import Typography from '@mui/material/Typography';
 import styled from '@emotion/styled';
 import CircularProgress from '@mui/material/CircularProgress';
 import { auth } from './firebase';
-import AuthenticatedApp from './views/AuthenticatedApp';
 import SignIn from './views/SignIn';
 import SignOut from './views/SignOut';
+import ChatRoom from './views/Chat/ChatRoom';
 
 const AppContainer = styled(Box)({
   textAlign: 'center',
@@ -50,7 +50,7 @@ function App() {
       <Section>
         {!loading && !user && <SignIn />}
         {loading && <CircularProgress />}
-        {user && <AuthenticatedApp user={user} />}
+        {user && <ChatRoom user={user} />}
       </Section>
     </AppContainer>
   );
