@@ -1,12 +1,12 @@
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
-const admin = require('firebase-admin');
 require('dotenv').config();
 
 const baseURL = process.env.REACT_APP_DATABASE_URL;
 
+//TODO: provide better error feedback
+
 const resolvers = {
   Query: {
-    // TODO: fix this
     messages: async () => {
       try {
         const response = await fetch(`${baseURL}/messages.json`);
@@ -18,20 +18,25 @@ const resolvers = {
     },
   },
   Mutation: {
-    addMessage: (root, { input }) => {
-      const messageId = messages.length;
-      messages.push({
-        id: messageId,
-        sender: input.sender,
-        content: input.content,
-      });
-      return {
-        message: {
-          id: messageId,
-          sender: input.sender,
-          content: input.content,
-        },
-      };
+    addMessage: async (root, { input }) => {
+      try {
+        const response = await fetch(`${baseURL}/messages.json`, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            sender: input.sender,
+            content: input.content,
+          }),
+        });
+
+        console.log(await response.json());
+        return await response.json();
+      } catch (err) {
+        console.error(`problem when trying to add a message. Error: ${err}`);
+      }
     },
   },
 };
