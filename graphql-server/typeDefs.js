@@ -12,7 +12,7 @@ const typeDefs = gql`
   }
 
   type AddMessagePayload {
-    message: Message!
+    name: String!
   }
 
   type Query {

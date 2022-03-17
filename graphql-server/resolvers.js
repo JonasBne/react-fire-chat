@@ -1,4 +1,5 @@
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
 
 const baseURL = process.env.REACT_APP_DATABASE_URL;
@@ -11,7 +12,19 @@ const resolvers = {
       try {
         const response = await fetch(`${baseURL}/messages.json`);
         const messages = await response.json();
-        return messages;
+        // when adding a message to Firebase db the original array
+        // is transformed into an object of objects
+        // these conditions make sure the query always returns an array of messages
+        if (messages === typeof Array) {
+          return messages;
+        } else {
+          const messagesArr = Object.keys(messages).map((key) => {
+            let msg = messages[key];
+            msg.key;
+            return msg;
+          });
+          return messagesArr;
+        }
       } catch (err) {
         console.error(`problem occured in query. Error: ${err}`);
       }
@@ -27,14 +40,14 @@ const resolvers = {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            id: ,
-            sender: input.sender,
             content: input.content,
+            id: uuidv4(),
+            sender: input.sender,
           }),
         });
-        console.log(await response.json());
+        const name = await response.json();
 
-        // return await response.json();
+        return name;
       } catch (err) {
         console.error(`problem when trying to add a message. Error: ${err}`);
       }
