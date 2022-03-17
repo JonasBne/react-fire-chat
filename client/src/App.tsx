@@ -25,7 +25,7 @@ const Section = styled.section({
   flexDirection: 'column',
   justifyContent: 'center',
   minHeight: '100vh',
-  marginInline: '24px',
+  marginInline: '12px',
 });
 
 const Title = styled(Typography)({
