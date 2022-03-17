@@ -3,6 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import styled from '@emotion/styled';
+import CircularProgress from '@mui/material/CircularProgress';
 import { auth } from './firebase';
 import AuthenticatedApp from './views/AuthenticatedApp';
 import SignIn from './views/SignIn';
@@ -33,14 +34,19 @@ const Title = styled(Typography)({
 });
 
 function App() {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   return (
     <AppContainer>
       <Header>
         <Title variant="h3">firechat 🔥</Title>
       </Header>
-      <Section>{user ? <AuthenticatedApp user={user} /> : <SignIn />}</Section>
+
+      <Section>
+        {!loading && !user && <SignIn />}
+        {loading && <CircularProgress />}
+        {user && <AuthenticatedApp user={user} />}
+      </Section>
     </AppContainer>
   );
 }
