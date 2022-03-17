@@ -14,7 +14,8 @@ function SendMessage({ message, onKeyPress, onSend }: SendMessageProps) {
     }
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
     onSend();
   };
 
@@ -24,7 +25,7 @@ function SendMessage({ message, onKeyPress, onSend }: SendMessageProps) {
 
   return (
     <div>
-      <form onSubmit={handleSendMessage}>
+      <form onSubmit={(evt) => handleSendMessage(evt)}>
         <Input
           sx={{ backgroundColor: 'white' }}
           placeholder="Start typing..."
