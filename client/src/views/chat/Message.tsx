@@ -8,6 +8,22 @@ interface MessageProps {
   photoUrl: string;
 }
 
+interface MsgProps {
+  status: 'sent' | 'received';
+}
+
+const Msg = styled.div(({ status }: MsgProps) => ({
+  display: 'flex',
+  alignItems: 'center',
+  flexDirection: status === 'sent' ? 'row-reverse' : 'row',
+}));
+
+const Text = styled.p(({ status }: MsgProps) => ({
+  color: status === 'sent' ? 'white' : 'black',
+  background: status === 'sent' ? '#0b93f6' : '#e5e5ea',
+  alignSelf: status === 'sent' ? 'flex-end' : '',
+}));
+
 const UserImage = styled.img({
   width: '40px',
   height: '40px',
@@ -18,11 +34,14 @@ const UserImage = styled.img({
 function Message({ content, userId, photoUrl }: MessageProps) {
   console.log('authenticated user', auth.currentUser);
   console.log('userid', userId);
+
+  const messageStatus = userId === auth.currentUser?.uid ? 'sent' : 'received';
+
   return (
-    <div>
+    <Msg status={messageStatus}>
       <UserImage src={photoUrl ?? 'https://dummyimage.com/40x40/c72cc7/ffffff.png&text=U'} alt="user-avatar" />
-      <p>{content}</p>
-    </div>
+      <Text status={messageStatus}>{content}</Text>
+    </Msg>
   );
 }
 
