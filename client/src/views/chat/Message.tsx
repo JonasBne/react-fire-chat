@@ -39,9 +39,6 @@ const UserImage = styled.img({
 });
 
 function Message({ content, userId, photoUrl }: MessageProps) {
-  console.log('authenticated user', auth.currentUser);
-  console.log('userid', userId);
-
   const messageStatus = userId === auth.currentUser?.uid ? 'sent' : 'received';
 
   return (
