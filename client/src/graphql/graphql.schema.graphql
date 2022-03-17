@@ -6,7 +6,9 @@ type Message {
   content: String!
   createdAt: String!
   id: ID!
+  photoUrl: String!
   sender: String!
+  userId: String!
 }
 
 input MessageInput {

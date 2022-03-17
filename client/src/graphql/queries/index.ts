@@ -7,6 +7,8 @@ export const GET_MESSAGES = gql`
       id
       sender
       createdAt
+      userId
+      photoUrl
     }
   }
 `;

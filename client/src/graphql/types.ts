@@ -25,7 +25,9 @@ export type Message = {
   content: Scalars['String'];
   createdAt: Scalars['String'];
   id: Scalars['ID'];
+  photoUrl: Scalars['String'];
   sender: Scalars['String'];
+  userId: Scalars['String'];
 };
 
 export type MessageInput = {
@@ -51,7 +53,15 @@ export type GetMessagesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetMessagesQuery = {
   __typename?: 'Query';
-  messages?: Array<{ __typename?: 'Message'; content: string; id: string; sender: string; createdAt: string }> | null;
+  messages?: Array<{
+    __typename?: 'Message';
+    content: string;
+    id: string;
+    sender: string;
+    createdAt: string;
+    userId: string;
+    photoUrl: string;
+  }> | null;
 };
 
 export type AddMessageMutationVariables = Exact<{
@@ -70,6 +80,8 @@ export const GetMessagesDocument = gql`
       id
       sender
       createdAt
+      userId
+      photoUrl
     }
   }
 `;
