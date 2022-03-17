@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <h1 className="text-2xl font-bold underline">Chat-0-matic</h1>
+      <h1 className="text-2xl font-bold underline">FireChat 🔥 </h1>
       {user ? (
         <>
           <Chat />
