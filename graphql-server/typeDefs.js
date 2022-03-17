@@ -5,7 +5,7 @@ const typeDefs = gql`
     content: String!
     id: ID!
     sender: String!
-    timestamp: String!
+    createdAt: String!
   }
   input MessageInput {
     sender: String!
