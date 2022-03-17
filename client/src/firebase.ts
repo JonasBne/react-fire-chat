@@ -1,14 +1,9 @@
 import firebase from 'firebase/compat/app';
-import * as firebaseui from 'firebaseui';
+// import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore/lite';
-
 import { getAuth } from 'firebase/auth';
 import 'firebase/firestore';
-// import { useAuthState } from 'react-firebase-hooks/auth';
-// import { useCollectionData } from 'react-firebase-hooks/firestore';
-import Chat from './views/Chat/Chat';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD-gtcusMd6k2fpltaKA7YxsY3Oewr1b9o',
