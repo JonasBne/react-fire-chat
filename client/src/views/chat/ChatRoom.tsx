@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { User } from '@firebase/auth/dist/auth-public';
 import { useMutation, useQuery } from '@apollo/client';
@@ -23,6 +23,7 @@ const Main = styled.main({
 });
 
 function ChatRoom({ user }: ChatRoomProps) {
+  const messagesEndRef = useRef<null | HTMLElement>(null);
   const [message, setMessage] = useState('');
 
   const { data } = useQuery<GetMessagesQuery>(GET_MESSAGES);
@@ -54,7 +55,17 @@ function ChatRoom({ user }: ChatRoomProps) {
       });
     }
     setMessage('');
+    if (messagesEndRef === null) {
+      return;
+    }
+    if (messagesEndRef !== null) {
+      messagesEndRef?.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
+
+  if (messagesEndRef !== null) {
+    messagesEndRef?.current?.scrollIntoView({ behavior: 'smooth' });
+  }
 
   return (
     <>
@@ -63,6 +74,7 @@ function ChatRoom({ user }: ChatRoomProps) {
           messages.map((msg) => (
             <Message key={msg.id} content={msg.content} photoUrl={msg.photoUrl} userId={msg.userId} />
           ))}
+        <span ref={messagesEndRef} />
       </Main>
       <SendMessage message={message} onKeyPress={handleTypeMessage} onSend={handleSendMessage} />
     </>
