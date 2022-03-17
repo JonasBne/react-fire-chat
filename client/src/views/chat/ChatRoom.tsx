@@ -5,7 +5,8 @@ import { ADD_MESSAGE, GET_MESSAGES } from '../../graphql/queries';
 import MessageInput from './MessageInput';
 import Messages from './Messages';
 
-function Chat() {
+function ChatRoom() {
+  // TODO: add data fetching here
   const [conversation, setConversation] = useState({
     recipient: 'Jonas',
     content: '',
@@ -44,11 +45,11 @@ function Chat() {
   };
 
   return (
-    <>
+    <div>
       <Messages recipient={conversation.recipient} />
       <MessageInput messageContent={conversation.content} onKeyPress={handleTypeMessage} onSend={handleSendMessage} />
-    </>
+    </div>
   );
 }
 
-export default Chat;
+export default ChatRoom;

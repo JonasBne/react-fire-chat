@@ -1,5 +1,5 @@
 type AddMessagePayload {
-  message: Message!
+  name: String!
 }
 
 type Message {

@@ -17,7 +17,7 @@ export type Scalars = {
 
 export type AddMessagePayload = {
   __typename?: 'AddMessagePayload';
-  message: Message;
+  name: Scalars['String'];
 };
 
 export type Message = {
@@ -59,10 +59,7 @@ export type AddMessageMutationVariables = Exact<{
 
 export type AddMessageMutation = {
   __typename?: 'Mutation';
-  addMessage: {
-    __typename?: 'AddMessagePayload';
-    message: { __typename?: 'Message'; id: string; sender: string; content: string };
-  };
+  addMessage: { __typename?: 'AddMessagePayload'; name: string };
 };
 
 export const GetMessagesDocument = gql`
@@ -78,11 +75,7 @@ export type GetMessagesQueryResult = Apollo.QueryResult<GetMessagesQuery, GetMes
 export const AddMessageDocument = gql`
   mutation addMessage($input: MessageInput!) {
     addMessage(input: $input) {
-      message {
-        id
-        sender
-        content
-      }
+      name
     }
   }
 `;

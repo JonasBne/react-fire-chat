@@ -17,7 +17,7 @@ function SignOut() {
   };
 
   return (
-    <Button type="button" sx={{ color: 'red' }} onClick={handleSignOut}>
+    <Button type="button" variant="contained" onClick={handleSignOut}>
       Sign Out
     </Button>
   );

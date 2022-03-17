@@ -21,11 +21,8 @@ const Header = styled.header({
 });
 
 const Section = styled.section({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  minHeight: '100vh',
-  marginInline: '12px',
+  marginTop: '60px',
+  marginInline: '24px',
 });
 
 const Title = styled(Typography)({
