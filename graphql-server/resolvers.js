@@ -1,4 +1,5 @@
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const admin = require('firebase-admin');
 const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
 
@@ -43,6 +44,7 @@ const resolvers = {
             content: input.content,
             id: uuidv4(),
             sender: input.sender,
+            createdAt: new Date().getTime().toString(),
           }),
         });
         const name = await response.json();
