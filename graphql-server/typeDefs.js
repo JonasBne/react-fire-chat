@@ -10,21 +10,13 @@ const typeDefs = gql`
     sender: String!
     content: String!
   }
+
   type AddMessagePayload {
     message: Message!
   }
 
-  type User {
-    fullName: String
-    email: String!
-    location: String
-    age: String
-    citizen: Boolean
-  }
-
   type Query {
     messages: [Message!]
-    users: [User]
   }
 
   type Mutation {
