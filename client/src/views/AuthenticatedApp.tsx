@@ -13,7 +13,7 @@ function AuthenticatedApp({ user }: AuthenticatedAppProps) {
   return (
     <>
       <SignOut />
-      <ChatRoom />
+      <ChatRoom user={user} />
     </>
   );
 }
