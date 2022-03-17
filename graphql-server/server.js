@@ -4,6 +4,7 @@ const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
 require('dotenv').config();
 
 const firebaseClient = initializeApp({
@@ -12,6 +13,10 @@ const firebaseClient = initializeApp({
   databaseURL: process.env.REACT_APP_DATABASE_URL,
   projectId: process.env.REACT_APP_PROJECT_ID,
 });
+
+const app = express();
+app.use(morgan('dev'));
+app.use(cors());
 
 const server = new ApolloServer({
   typeDefs,
@@ -23,10 +28,6 @@ const server = new ApolloServer({
     };
   },
 });
-
-const app = express();
-
-app.use(cors);
 
 server.start().then((res) => {
   server.applyMiddleware({ app });

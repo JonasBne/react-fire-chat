@@ -1,14 +1,20 @@
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const admin = require('firebase-admin');
 require('dotenv').config();
+
 const baseURL = process.env.REACT_APP_DATABASE_URL;
 
 const resolvers = {
   Query: {
     // TODO: fix this
     messages: async () => {
-      const data = await fetch(`${baseURL}/messages.json`);
-      const dataJson = await data.json();
-      const keys = Object.keys(dataJson);
+      try {
+        const response = await fetch(`${baseURL}/messages.json`);
+        const messages = await response.json();
+        return messages;
+      } catch (err) {
+        console.error(`problem occured in query. Error: ${err}`);
+      }
     },
   },
   Mutation: {

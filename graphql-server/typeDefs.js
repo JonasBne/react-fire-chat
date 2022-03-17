@@ -2,9 +2,9 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Message {
+    content: String!
     id: ID!
     sender: String!
-    content: String!
   }
   input MessageInput {
     sender: String!
