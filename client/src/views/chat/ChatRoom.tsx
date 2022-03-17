@@ -8,9 +8,10 @@ import MessageInput from './MessageInput';
 import Messages from './Messages';
 
 function ChatRoom() {
-  const { data: messages } = useQuery<GetMessagesQuery>(GET_MESSAGES);
+  const { data } = useQuery<GetMessagesQuery>(GET_MESSAGES);
+  const orderedMessages = data?.messages;
 
-  console.log(messages);
+  console.log(orderedMessages);
 
   const [conversation, setConversation] = useState({
     recipient: 'Jonas',

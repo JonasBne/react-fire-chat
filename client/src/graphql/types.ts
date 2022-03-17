@@ -23,6 +23,7 @@ export type AddMessagePayload = {
 export type Message = {
   __typename?: 'Message';
   content: Scalars['String'];
+  createdAt: Scalars['String'];
   id: Scalars['ID'];
   sender: Scalars['String'];
 };
@@ -50,7 +51,7 @@ export type GetMessagesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetMessagesQuery = {
   __typename?: 'Query';
-  messages?: Array<{ __typename?: 'Message'; id: string; sender: string; content: string }> | null;
+  messages?: Array<{ __typename?: 'Message'; content: string; id: string; sender: string; createdAt: string }> | null;
 };
 
 export type AddMessageMutationVariables = Exact<{
@@ -65,9 +66,10 @@ export type AddMessageMutation = {
 export const GetMessagesDocument = gql`
   query getMessages {
     messages {
+      content
       id
       sender
-      content
+      createdAt
     }
   }
 `;

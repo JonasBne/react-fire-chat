@@ -4,6 +4,7 @@ type AddMessagePayload {
 
 type Message {
   content: String!
+  createdAt: String!
   id: ID!
   sender: String!
 }
