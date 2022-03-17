@@ -1,4 +1,5 @@
-import firebase from 'firebase/compat/app';
+// TODO: cleanup files
+// import firebase from 'firebase/compat/app';
 // import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 import { initializeApp } from 'firebase/app';
@@ -17,5 +18,5 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 
+// eslint-disable-next-line import/prefer-default-export
 export const auth = getAuth(app);
-export const database = firebase.database();
