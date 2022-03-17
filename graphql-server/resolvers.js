@@ -44,6 +44,8 @@ const resolvers = {
             content: input.content,
             id: uuidv4(),
             sender: input.sender,
+            photoUrl: input.photoUrl,
+            userId: input.userId,
             createdAt: new Date().getTime().toString(),
           }),
         });

@@ -6,6 +6,8 @@ const typeDefs = gql`
     id: ID!
     sender: String!
     createdAt: String!
+    userId: String!
+    photoUrl: String!
   }
   input MessageInput {
     sender: String!
