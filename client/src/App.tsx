@@ -7,6 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { auth } from './firebase';
 import AuthenticatedApp from './views/AuthenticatedApp';
 import SignIn from './views/SignIn';
+import SignOut from './views/SignOut';
 
 const AppContainer = styled(Box)({
   textAlign: 'center',
@@ -16,9 +17,12 @@ const AppContainer = styled(Box)({
 
 const Header = styled.header({
   color: 'white',
-  width: '100%',
   maxWidth: '728px',
   padding: '12px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  marginInline: '12px',
 });
 
 const Section = styled.section({
@@ -39,7 +43,8 @@ function App() {
   return (
     <AppContainer>
       <Header>
-        <Title variant="h3">firechat 🔥</Title>
+        <Title variant="h5">firechat 🔥</Title>
+        {user && <SignOut />}
       </Header>
 
       <Section>

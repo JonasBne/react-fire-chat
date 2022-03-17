@@ -9,7 +9,7 @@ function SignOut() {
   };
 
   return (
-    <Button type="button" variant="contained" onClick={handleSignOut}>
+    <Button type="button" variant="outlined" color="error" onClick={handleSignOut}>
       Sign Out
     </Button>
   );

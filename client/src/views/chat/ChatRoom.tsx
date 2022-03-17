@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { User } from '@firebase/auth/dist/auth-public';
 import { useMutation, useQuery } from '@apollo/client';
+import styled from '@emotion/styled';
 import { AddMessageMutation, AddMessageMutationVariables, GetMessagesQuery } from '../../graphql/types';
 import { ADD_MESSAGE, GET_MESSAGES } from '../../graphql/queries';
 
@@ -11,6 +12,15 @@ import Message from './Message';
 interface ChatRoomProps {
   user: User;
 }
+
+const Main = styled.main({
+  padding: '10px',
+  height: '80vh',
+  margin: '10vh 0 10vh',
+  overflowY: 'scroll',
+  display: 'flex',
+  flexDirection: 'column',
+});
 
 function ChatRoom({ user }: ChatRoomProps) {
   const [message, setMessage] = useState('');
@@ -48,10 +58,12 @@ function ChatRoom({ user }: ChatRoomProps) {
 
   return (
     <>
-      {messages &&
-        messages.map((msg) => (
-          <Message key={msg.id} content={msg.content} photoUrl={msg.photoUrl} userId={msg.userId} />
-        ))}
+      <Main>
+        {messages &&
+          messages.map((msg) => (
+            <Message key={msg.id} content={msg.content} photoUrl={msg.photoUrl} userId={msg.userId} />
+          ))}
+      </Main>
       <SendMessage message={message} onKeyPress={handleTypeMessage} onSend={handleSendMessage} />
     </>
   );
