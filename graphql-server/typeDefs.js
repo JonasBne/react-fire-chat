@@ -12,6 +12,8 @@ const typeDefs = gql`
   input MessageInput {
     sender: String!
     content: String!
+    photoUrl: String!
+    userId: String!
   }
 
   type AddMessagePayload {
