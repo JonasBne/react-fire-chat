@@ -3,6 +3,7 @@ const { initializeApp } = require('firebase-admin/app');
 const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config();
 
 const firebaseClient = initializeApp({
@@ -24,6 +25,8 @@ const server = new ApolloServer({
 });
 
 const app = express();
+
+app.use(cors);
 
 server.start().then((res) => {
   server.applyMiddleware({ app });
