@@ -19,6 +19,13 @@ const Msg = styled.div(({ status }: MsgProps) => ({
 }));
 
 const Text = styled.p(({ status }: MsgProps) => ({
+  maxWidth: '500px',
+  marginBottom: '12px',
+  lineHeight: '24px',
+  padding: '10px 20px',
+  borderRadius: '25px',
+  position: 'relative',
+  textAlign: 'center',
   color: status === 'sent' ? 'white' : 'black',
   background: status === 'sent' ? '#0b93f6' : '#e5e5ea',
   alignSelf: status === 'sent' ? 'flex-end' : '',
