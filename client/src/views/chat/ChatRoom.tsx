@@ -1,12 +1,17 @@
+// TODO; remove this rule
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { AddMessageMutation, AddMessageMutationVariables } from '../../graphql/types';
+import { useMutation, useQuery } from '@apollo/client';
+import { AddMessageMutation, AddMessageMutationVariables, GetMessagesQuery } from '../../graphql/types';
 import { ADD_MESSAGE, GET_MESSAGES } from '../../graphql/queries';
 import MessageInput from './MessageInput';
 import Messages from './Messages';
 
 function ChatRoom() {
-  // TODO: add data fetching here
+  const { data: messages } = useQuery<GetMessagesQuery>(GET_MESSAGES);
+
+  console.log(messages);
+
   const [conversation, setConversation] = useState({
     recipient: 'Jonas',
     content: '',
@@ -20,34 +25,34 @@ function ChatRoom() {
     ],
   });
 
-  const handleTypeMessage = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setConversation((prevConversation) => ({
-      ...prevConversation,
-      content: evt.target.value,
-    }));
-  };
+  // const handleTypeMessage = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+  //   setConversation((prevConversation) => ({
+  //     ...prevConversation,
+  //     content: evt.target.value,
+  //   }));
+  // };
 
-  const handleSendMessage = () => {
-    if (conversation.content.trim().length > 0) {
-      addMessage({
-        variables: {
-          input: {
-            sender: 'Jonas',
-            content: conversation.content,
-          },
-        },
-      });
-    }
-    setConversation((prevConversation) => ({
-      ...prevConversation,
-      content: '',
-    }));
-  };
+  // const handleSendMessage = () => {
+  //   if (conversation.content.trim().length > 0) {
+  //     addMessage({
+  //       variables: {
+  //         input: {
+  //           sender: 'Jonas',
+  //           content: conversation.content,
+  //         },
+  //       },
+  //     });
+  //   }
+  //   setConversation((prevConversation) => ({
+  //     ...prevConversation,
+  //     content: '',
+  //   }));
+  // };
 
   return (
     <div>
-      <Messages recipient={conversation.recipient} />
-      <MessageInput messageContent={conversation.content} onKeyPress={handleTypeMessage} onSend={handleSendMessage} />
+      {/* <Messages recipient={conversation.recipient} />
+      <MessageInput messageContent={conversation.content} onKeyPress={handleTypeMessage} onSend={handleSendMessage} /> */}
     </div>
   );
 }
