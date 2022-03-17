@@ -48,7 +48,10 @@ function ChatRoom({ user }: ChatRoomProps) {
 
   return (
     <>
-      {messages && messages.map((msg) => <Message content={msg.content} photoUrl={msg.photoUrl} userId={msg.userId} />)}
+      {messages &&
+        messages.map((msg) => (
+          <Message key={msg.id} content={msg.content} photoUrl={msg.photoUrl} userId={msg.userId} />
+        ))}
       <SendMessage message={message} onKeyPress={handleTypeMessage} onSend={handleSendMessage} />
     </>
   );
