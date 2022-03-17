@@ -10,7 +10,12 @@ function SignIn() {
   };
 
   return (
-    <Button type="button" onClick={signInWithGoogle} variant="contained">
+    <Button
+      type="button"
+      onClick={signInWithGoogle}
+      variant="contained"
+      sx={{ fontSize: '20px', margin: 'auto', width: '50%' }}
+    >
       Sign In With Google
     </Button>
   );

@@ -12,22 +12,32 @@ import ChatRoom from './views/Chat/ChatRoom';
 const AppContainer = styled(Box)({
   textAlign: 'center',
   maxWidth: '728px',
-  height: '100vh',
+  margin: '0 auto',
 });
 
 const Header = styled.header({
+  backgroundColor: '#181717',
+  height: '10vh',
+  minHeight: '50px',
   color: 'white',
+  position: 'fixed',
+  width: '100%',
   maxWidth: '728px',
-  padding: '12px',
+  top: 0,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  marginInline: '12px',
+  zIndex: 99,
+  padding: '10px',
+  boxSizing: 'border-box',
 });
 
 const Section = styled.section({
-  marginTop: '60px',
-  marginInline: '24px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  minHeight: '100vh',
+  backgroundColor: 'rgb(40, 37, 53)',
 });
 
 const Title = styled(Typography)({
@@ -43,7 +53,7 @@ function App() {
   return (
     <AppContainer>
       <Header>
-        <Title variant="h5">firechat 🔥</Title>
+        <Title variant="h4">firechat 🔥</Title>
         {user && <SignOut />}
       </Header>
 

@@ -9,7 +9,7 @@ function SignOut() {
   };
 
   return (
-    <Button type="button" variant="outlined" color="error" onClick={handleSignOut}>
+    <Button type="button" variant="outlined" color="error" onClick={handleSignOut} sx={{ fontSize: '20px' }}>
       Sign Out
     </Button>
   );

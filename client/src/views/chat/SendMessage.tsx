@@ -9,13 +9,21 @@ interface SendMessageProps {
 }
 
 const Form = styled.form({
-  height: '10vh',
+  height: '8vh',
   position: 'fixed',
   bottom: 0,
   backgroundColor: 'rgb(24, 23, 23)',
-  width: ' 100%',
+  width: '100%',
   maxWidth: '728px',
   display: 'flex',
+});
+
+const TextInput = styled(Input)({
+  lineHeight: '1.5',
+  width: '100%',
+  outline: 'none',
+  padding: '0 10px',
+  background: 'white',
 });
 
 function SendMessage({ message, onKeyPress, onSend }: SendMessageProps) {
@@ -35,20 +43,17 @@ function SendMessage({ message, onKeyPress, onSend }: SendMessageProps) {
   };
 
   return (
-    <div>
-      <Form onSubmit={(evt) => handleSendMessage(evt)}>
-        <Input
-          sx={{ backgroundColor: 'white' }}
-          placeholder="Start typing..."
-          value={message}
-          onKeyUp={handleSendMessageOnEnter}
-          onChange={handleChange}
-        />
-        <Button type="submit" variant="contained">
-          Send
-        </Button>
-      </Form>
-    </div>
+    <Form onSubmit={(evt) => handleSendMessage(evt)}>
+      <TextInput
+        placeholder="Start typing..."
+        value={message}
+        onKeyUp={handleSendMessageOnEnter}
+        onChange={handleChange}
+      />
+      <Button type="submit" variant="contained" sx={{ width: '20%' }}>
+        Send
+      </Button>
+    </Form>
   );
 }
 
