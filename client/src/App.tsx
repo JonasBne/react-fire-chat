@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import styled from '@emotion/styled';
 import { auth } from './firebase';
 import AuthenticatedApp from './views/AuthenticatedApp';
-import UnauthenticatedApp from './views/UnauthenticatedApp';
+import SignIn from './views/SignIn';
 
 const AppContainer = styled(Box)({
   textAlign: 'center',
@@ -40,7 +40,7 @@ function App() {
       <Header>
         <Title variant="h3">firechat 🔥</Title>
       </Header>
-      <Section>{user ? <AuthenticatedApp user={user} /> : <UnauthenticatedApp />}</Section>
+      <Section>{user ? <AuthenticatedApp user={user} /> : <SignIn />}</Section>
     </AppContainer>
   );
 }
