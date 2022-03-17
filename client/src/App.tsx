@@ -10,8 +10,7 @@ import UnauthenticatedApp from './views/UnauthenticatedApp';
 const AppContainer = styled(Box)({
   textAlign: 'center',
   maxWidth: '728px',
-  height: '80vh',
-  margin: '24px',
+  height: '100vh',
 });
 
 const Header = styled.header({

@@ -1,7 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { User } from '@firebase/auth/dist/auth-public';
-import Chat from './Chat/Chat';
+import Chat from './Chat/ChatRoom';
 import SignOut from './SignOut';
 
 interface AuthenticatedAppProps {
