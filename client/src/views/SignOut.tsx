@@ -1,11 +1,23 @@
 import React from 'react';
-import { signOut } from 'firebase/auth';
+import { getAuth, signOut } from 'firebase/auth';
 import { Button } from '@mui/material';
-import { auth } from '../firebase';
+
+// TODO: remove logs and provide more valuable feedback and UI
 
 function SignOut() {
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        console.log(`successful signout`);
+      })
+      .catch((error) => {
+        console.error(`problem during logout occured. Error ${error}`);
+      });
+  };
+
   return (
-    <Button type="button" variant="contained" onClick={() => signOut(auth)}>
+    <Button type="button" variant="contained" onClick={handleSignOut}>
       Sign Out
     </Button>
   );
