@@ -39,6 +39,8 @@ function ChatRoom({ user }: ChatRoomProps) {
           input: {
             sender: user.displayName ?? 'unknown',
             content: message,
+            userId: user.uid,
+            photoUrl: user.photoURL ?? '',
           },
         },
       });

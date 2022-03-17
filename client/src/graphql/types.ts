@@ -32,7 +32,9 @@ export type Message = {
 
 export type MessageInput = {
   content: Scalars['String'];
+  photoUrl: Scalars['String'];
   sender: Scalars['String'];
+  userId: Scalars['String'];
 };
 
 export type Mutation = {
