@@ -21,32 +21,32 @@ const firebaseClient = initializeApp({
   projectId: process.env.REACT_APP_PROJECT_ID,
 });
 
-// app setup
-
-const app = express();
-app.use(morgan('dev'));
-app.use(cors());
-
-const httpServer = createServer(app);
-
+// Create the schema, which will be used separately by ApolloServer and
+// the WebSocket server.
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-// websocketserver setup
+// Create an Express app and HTTP server; we will attach both the WebSocket
+// server and the ApolloServer to this HTTP server.
+const app = express();
+app.use(morgan('dev'));
+const httpServer = createServer(app);
 
+// Create our WebSocket server using the HTTP server we just set up.
 const wsServer = new WebSocketServer({
   server: httpServer,
   path: '/graphql',
 });
-
+// Save the returned server's info so we can shutdown this server later
 const serverCleanup = useServer({ schema }, wsServer);
 
+// Set up ApolloServer.
 const server = new ApolloServer({
   schema,
   plugins: [
-    // proper http server shutdown
+    // Proper shutdown for the HTTP server.
     ApolloServerPluginDrainHttpServer({ httpServer }),
 
-    // proper websocket server shutdown
+    // Proper shutdown for the WebSocket server.
     {
       async serverWillStart() {
         return {
@@ -57,20 +57,12 @@ const server = new ApolloServer({
       },
     },
   ],
-  context: ({ req }) => {
-    return {
-      headers: req.headers,
-      firebaseClient,
-    };
-  },
 });
 
-server.start().then((res) => {
-  server.applyMiddleware({ app });
+server.start().then(() => server.applyMiddleware({ app }));
 
-  const PORT = 4000;
+const PORT = 4000;
 
-  httpServer.listen(PORT, () => {
-    console.log(`Server is now running on http://localhost:${PORT}${server.graphqlPath} 🔥`);
-  });
+httpServer.listen(PORT, () => {
+  console.log(`Server is now running on http://localhost:${PORT}${server.graphqlPath}`);
 });

@@ -53,9 +53,11 @@ const resolvers = {
             createdAt: new Date().getTime().toString(),
           }),
         });
-        // const name = await response.json();
 
-        // pubsub.publish('MESSAGE_ADDED')
+        pubsub.publish('MESSAGE_CREATED', {
+          messageCreated: input,
+        });
+
         return {
           content: input.content,
           sender: input.sender,
@@ -71,7 +73,7 @@ const resolvers = {
   // TODO: remove pubsub and change https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries
   Subscription: {
     messages: {
-      subscribe: () => pubsub.asyncIterator(['MESSAGES_SUBSCRIPTION']),
+      subscribe: () => pubsub.asyncIterator(['MESSAGE_CREATED']),
     },
   },
 };
