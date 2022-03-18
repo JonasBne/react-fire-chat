@@ -8,18 +8,8 @@ const { useServer } = require('graphql-ws/lib/use/ws');
 const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
 const express = require('express');
-const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
-
-// firebase setup
-
-const firebaseClient = initializeApp({
-  apiKey: process.env.REACT_APP_APIKEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_DATABASE_URL,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-});
 
 // Create the schema, which will be used separately by ApolloServer and
 // the WebSocket server.
