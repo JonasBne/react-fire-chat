@@ -24,6 +24,14 @@ export type AddMessagePayload = {
   userId: Scalars['String'];
 };
 
+export type CreatedMessage = {
+  __typename?: 'CreatedMessage';
+  content: Scalars['String'];
+  photoUrl: Scalars['String'];
+  sender: Scalars['String'];
+  userId: Scalars['String'];
+};
+
 export type Message = {
   __typename?: 'Message';
   content: Scalars['String'];
@@ -57,7 +65,7 @@ export type Query = {
 
 export type Subscription = {
   __typename?: 'Subscription';
-  messages?: Maybe<Array<Message>>;
+  messageCreated: CreatedMessage;
 };
 
 export type GetMessagesQueryVariables = Exact<{ [key: string]: never }>;
@@ -79,15 +87,7 @@ export type MessagesSubscriptionVariables = Exact<{ [key: string]: never }>;
 
 export type MessagesSubscription = {
   __typename?: 'Subscription';
-  messages?: Array<{
-    __typename?: 'Message';
-    content: string;
-    createdAt: string;
-    userId: string;
-    photoUrl: string;
-    id: string;
-    sender: string;
-  }> | null;
+  messageCreated: { __typename?: 'CreatedMessage'; content: string; photoUrl: string; sender: string; userId: string };
 };
 
 export type AddMessageMutationVariables = Exact<{
@@ -121,13 +121,11 @@ export const GetMessagesDocument = gql`
 export type GetMessagesQueryResult = Apollo.QueryResult<GetMessagesQuery, GetMessagesQueryVariables>;
 export const MessagesDocument = gql`
   subscription messages {
-    messages {
+    messageCreated {
       content
-      createdAt
-      userId
       photoUrl
-      id
       sender
+      userId
     }
   }
 `;

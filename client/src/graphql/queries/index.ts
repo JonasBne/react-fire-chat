@@ -15,13 +15,11 @@ export const GET_MESSAGES = gql`
 
 export const MESSAGES_SUBSCRIPTION = gql`
   subscription messages {
-    messages {
+    messageCreated {
       content
-      createdAt
-      userId
       photoUrl
-      id
       sender
+      userId
     }
   }
 `;

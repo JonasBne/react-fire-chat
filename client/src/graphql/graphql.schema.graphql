@@ -6,6 +6,13 @@ type AddMessagePayload {
   userId: String!
 }
 
+type CreatedMessage {
+  content: String!
+  photoUrl: String!
+  sender: String!
+  userId: String!
+}
+
 type Message {
   content: String!
   createdAt: String!
@@ -31,5 +38,5 @@ type Query {
 }
 
 type Subscription {
-  messages: [Message!]
+  messageCreated: CreatedMessage!
 }

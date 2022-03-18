@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, split, HttpLink } from '@apollo/client';
-import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
-import { createClient } from 'graphql-ws';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 import './index.css';
 import App from './App';
 
-const wsLink = new GraphQLWsLink(
-  createClient({
-    url: 'ws://localhost:4000/subscriptions',
-  }),
-);
+const wsLink = new WebSocketLink(new SubscriptionClient('ws://localhost:4000/graphql'));
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:4000/graphql',
