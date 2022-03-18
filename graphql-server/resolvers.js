@@ -43,7 +43,7 @@ const resolvers = {
         sender: input.sender,
         photoUrl: input.photoUrl,
         userId: input.userId,
-        createdAt: new Date().getTime().toString(),
+        createdAt: Date.now(),
       };
 
       try {
