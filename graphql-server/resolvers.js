@@ -37,7 +37,14 @@ const resolvers = {
   },
   Mutation: {
     addMessage: async (root, { input }) => {
-      const messageId = uuidv4();
+      const newMessage = {
+        content: input.content,
+        id: uuidv4(),
+        sender: input.sender,
+        photoUrl: input.photoUrl,
+        userId: input.userId,
+        createdAt: new Date().getTime().toString(),
+      };
 
       try {
         const response = await fetch(`${baseURL}/messages.json`, {
@@ -46,36 +53,18 @@ const resolvers = {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            content: input.content,
-            id: messageId,
-            sender: input.sender,
-            photoUrl: input.photoUrl,
-            userId: input.userId,
-            createdAt: new Date().getTime().toString(),
-          }),
+          body: JSON.stringify(newMessage),
         });
 
         const result = await response.json();
 
-        pubsub.publish('MESSAGE_CREATED', {
-          messageCreated: {
-            content: input.content,
-            sender: input.sender,
-            photoUrl: input.photoUrl,
-            userId: input.userId,
-            id: messageId,
-          },
-        });
+        if (result) {
+          pubsub.publish('MESSAGE_CREATED', {
+            messageCreated: newMessage,
+          });
 
-        return {
-          content: input.content,
-          id: messageId,
-          sender: input.sender,
-          photoUrl: input.photoUrl,
-          userId: input.userId,
-          createdAt: new Date().getTime().toString(),
-        };
+          return newMessage;
+        }
       } catch (err) {
         console.error(`problem when trying to add a message. Error: ${err}`);
       }

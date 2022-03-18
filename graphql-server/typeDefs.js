@@ -1,21 +1,13 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type CreatedMessage {
-    id: ID!
-    content: String!
-    sender: String!
-    userId: String!
-    photoUrl: String!
-  }
-
   type Message {
     content: String!
     id: ID!
     sender: String!
-    createdAt: String!
     userId: String!
     photoUrl: String!
+    createdAt: String!
   }
   input MessageInput {
     sender: String!
@@ -42,7 +34,7 @@ const typeDefs = gql`
   }
 
   type Subscription {
-    messageCreated: CreatedMessage!
+    messageCreated: Message!
   }
 `;
 
