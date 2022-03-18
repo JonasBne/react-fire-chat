@@ -27,6 +27,10 @@ const typeDefs = gql`
   type Mutation {
     addMessage(input: MessageInput!): AddMessagePayload!
   }
+
+  type Subscription {
+    messages: [Message!]
+  }
 `;
 
 module.exports = typeDefs;
