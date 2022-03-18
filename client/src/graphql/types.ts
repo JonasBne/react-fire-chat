@@ -25,15 +25,6 @@ export type AddMessagePayload = {
   userId: Scalars['String'];
 };
 
-export type CreatedMessage = {
-  __typename?: 'CreatedMessage';
-  content: Scalars['String'];
-  id: Scalars['ID'];
-  photoUrl: Scalars['String'];
-  sender: Scalars['String'];
-  userId: Scalars['String'];
-};
-
 export type Message = {
   __typename?: 'Message';
   content: Scalars['String'];
@@ -67,7 +58,7 @@ export type Query = {
 
 export type Subscription = {
   __typename?: 'Subscription';
-  messageCreated: CreatedMessage;
+  messageCreated: Message;
 };
 
 export type GetMessagesQueryVariables = Exact<{ [key: string]: never }>;
@@ -79,9 +70,9 @@ export type GetMessagesQuery = {
     content: string;
     id: string;
     sender: string;
-    createdAt: string;
     userId: string;
     photoUrl: string;
+    createdAt: string;
   }> | null;
 };
 
@@ -89,7 +80,15 @@ export type MessagesSubscriptionVariables = Exact<{ [key: string]: never }>;
 
 export type MessagesSubscription = {
   __typename?: 'Subscription';
-  messageCreated: { __typename?: 'CreatedMessage'; content: string; photoUrl: string; sender: string; userId: string };
+  messageCreated: {
+    __typename?: 'Message';
+    id: string;
+    content: string;
+    photoUrl: string;
+    sender: string;
+    userId: string;
+    createdAt: string;
+  };
 };
 
 export type AddMessageMutationVariables = Exact<{
@@ -103,9 +102,9 @@ export type AddMessageMutation = {
     content: string;
     id: string;
     sender: string;
-    createdAt: string;
     userId: string;
     photoUrl: string;
+    createdAt: string;
   };
 };
 
@@ -115,9 +114,9 @@ export const GetMessagesDocument = gql`
       content
       id
       sender
-      createdAt
       userId
       photoUrl
+      createdAt
     }
   }
 `;
@@ -125,10 +124,12 @@ export type GetMessagesQueryResult = Apollo.QueryResult<GetMessagesQuery, GetMes
 export const MessagesDocument = gql`
   subscription messages {
     messageCreated {
+      id
       content
       photoUrl
       sender
       userId
+      createdAt
     }
   }
 `;
@@ -139,9 +140,9 @@ export const AddMessageDocument = gql`
       content
       id
       sender
-      createdAt
       userId
       photoUrl
+      createdAt
     }
   }
 `;

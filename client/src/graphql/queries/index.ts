@@ -6,9 +6,9 @@ export const GET_MESSAGES = gql`
       content
       id
       sender
-      createdAt
       userId
       photoUrl
+      createdAt
     }
   }
 `;
@@ -16,10 +16,12 @@ export const GET_MESSAGES = gql`
 export const MESSAGES_SUBSCRIPTION = gql`
   subscription messages {
     messageCreated {
+      id
       content
       photoUrl
       sender
       userId
+      createdAt
     }
   }
 `;
@@ -30,9 +32,9 @@ export const ADD_MESSAGE = gql`
       content
       id
       sender
-      createdAt
       userId
       photoUrl
+      createdAt
     }
   }
 `;

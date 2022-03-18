@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { User } from '@firebase/auth/dist/auth-public';
 import { useMutation, useQuery } from '@apollo/client';
@@ -42,22 +42,20 @@ function ChatRoom({ user }: ChatRoomProps) {
     ],
   });
 
-  subscribeToMore<MessagesSubscription>({
-    document: MESSAGES_SUBSCRIPTION,
-    updateQuery: (prev, { subscriptionData }) => {
-      if (!subscriptionData.data) return prev;
+  useEffect(() => {
+    subscribeToMore<MessagesSubscription>({
+      document: MESSAGES_SUBSCRIPTION,
+      updateQuery: (prev, { subscriptionData }) => {
+        const newMessage = subscriptionData.data.messageCreated;
 
-      const newMessage = subscriptionData.data.messageCreated;
+        if (prev.messages !== null && prev.messages !== undefined) {
+          return { ...prev, messages: [newMessage, ...prev.messages] };
+        }
 
-      if (prev.messages !== null && prev.messages !== undefined) {
-        // eslint-disable-next-line prefer-object-spread
-        return Object.assign({}, prev, {
-          messages: [...prev.messages, newMessage],
-        });
-      }
-      return prev;
-    },
-  });
+        return prev;
+      },
+    });
+  }, []);
 
   const handleTypeMessage = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(evt.target.value);
@@ -94,7 +92,12 @@ function ChatRoom({ user }: ChatRoomProps) {
       <Main>
         {messages &&
           messages.map((msg) => (
-            <Message key={msg.id} content={msg.content} photoUrl={msg.photoUrl} userId={msg.userId} />
+            <Message
+              key={`${msg.id}${msg.createdAt}`}
+              content={msg.content}
+              photoUrl={msg.photoUrl}
+              userId={msg.userId}
+            />
           ))}
 
         <span ref={messagesEndRef} />
