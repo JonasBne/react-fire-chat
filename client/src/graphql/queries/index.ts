@@ -27,11 +27,12 @@ export const MESSAGES_SUBSCRIPTION = gql`
 export const ADD_MESSAGE = gql`
   mutation addMessage($input: MessageInput!) {
     addMessage(input: $input) {
-      sender
       content
+      id
+      sender
+      createdAt
       userId
       photoUrl
-      createdAt
     }
   }
 `;

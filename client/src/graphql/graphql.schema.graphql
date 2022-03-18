@@ -1,6 +1,7 @@
 type AddMessagePayload {
   content: String!
   createdAt: String!
+  id: ID!
   photoUrl: String!
   sender: String!
   userId: String!
@@ -8,6 +9,7 @@ type AddMessagePayload {
 
 type CreatedMessage {
   content: String!
+  id: ID!
   photoUrl: String!
   sender: String!
   userId: String!

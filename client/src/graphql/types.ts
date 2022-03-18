@@ -19,6 +19,7 @@ export type AddMessagePayload = {
   __typename?: 'AddMessagePayload';
   content: Scalars['String'];
   createdAt: Scalars['String'];
+  id: Scalars['ID'];
   photoUrl: Scalars['String'];
   sender: Scalars['String'];
   userId: Scalars['String'];
@@ -27,6 +28,7 @@ export type AddMessagePayload = {
 export type CreatedMessage = {
   __typename?: 'CreatedMessage';
   content: Scalars['String'];
+  id: Scalars['ID'];
   photoUrl: Scalars['String'];
   sender: Scalars['String'];
   userId: Scalars['String'];
@@ -98,11 +100,12 @@ export type AddMessageMutation = {
   __typename?: 'Mutation';
   addMessage: {
     __typename?: 'AddMessagePayload';
-    sender: string;
     content: string;
+    id: string;
+    sender: string;
+    createdAt: string;
     userId: string;
     photoUrl: string;
-    createdAt: string;
   };
 };
 
@@ -133,11 +136,12 @@ export type MessagesSubscriptionResult = Apollo.SubscriptionResult<MessagesSubsc
 export const AddMessageDocument = gql`
   mutation addMessage($input: MessageInput!) {
     addMessage(input: $input) {
-      sender
       content
+      id
+      sender
+      createdAt
       userId
       photoUrl
-      createdAt
     }
   }
 `;
