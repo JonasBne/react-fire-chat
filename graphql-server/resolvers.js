@@ -8,8 +8,6 @@ const baseURL = process.env.REACT_APP_DATABASE_URL;
 
 const pubsub = new PubSub();
 
-//TODO: provide better error feedback
-
 const resolvers = {
   Query: {
     messages: async () => {

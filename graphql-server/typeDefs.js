@@ -7,7 +7,7 @@ const typeDefs = gql`
     sender: String!
     userId: String!
     photoUrl: String!
-    createdAt: Int!
+    createdAt: Float!
   }
   input MessageInput {
     sender: String!
@@ -22,7 +22,7 @@ const typeDefs = gql`
     content: String!
     userId: String!
     photoUrl: String!
-    createdAt: Int!
+    createdAt: Float!
   }
 
   type Query {
