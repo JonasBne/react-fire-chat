@@ -1,13 +1,13 @@
 {
   "messages": [
     {
-      "id": 0,
+      "id": "0",
       "sender": "Ann",
       "recipient": "Jonas",
       "content": "Hi there, Jonas"
     },
     {
-      "id": 1,
+      "id": "1",
       "sender": "Jonas",
       "recipient": "Ann",
       "content": "Hi there, Ann"

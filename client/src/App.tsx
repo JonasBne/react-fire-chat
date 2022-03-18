@@ -57,9 +57,10 @@ function App() {
         {user && <SignOut />}
       </Header>
 
+      {loading && <CircularProgress />}
+
       <Section>
         {!loading && !user && <SignIn />}
-        {loading && <CircularProgress />}
         {user && <ChatRoom user={user} />}
       </Section>
     </AppContainer>
