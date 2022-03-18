@@ -51,6 +51,11 @@ export type Query = {
   messages?: Maybe<Array<Message>>;
 };
 
+export type Subscription = {
+  __typename?: 'Subscription';
+  messages?: Maybe<Array<Message>>;
+};
+
 export type GetMessagesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetMessagesQuery = {
@@ -63,6 +68,21 @@ export type GetMessagesQuery = {
     createdAt: string;
     userId: string;
     photoUrl: string;
+  }> | null;
+};
+
+export type MessagesSubscriptionVariables = Exact<{ [key: string]: never }>;
+
+export type MessagesSubscription = {
+  __typename?: 'Subscription';
+  messages?: Array<{
+    __typename?: 'Message';
+    content: string;
+    createdAt: string;
+    userId: string;
+    photoUrl: string;
+    id: string;
+    sender: string;
   }> | null;
 };
 
@@ -88,6 +108,19 @@ export const GetMessagesDocument = gql`
   }
 `;
 export type GetMessagesQueryResult = Apollo.QueryResult<GetMessagesQuery, GetMessagesQueryVariables>;
+export const MessagesDocument = gql`
+  subscription messages {
+    messages {
+      content
+      createdAt
+      userId
+      photoUrl
+      id
+      sender
+    }
+  }
+`;
+export type MessagesSubscriptionResult = Apollo.SubscriptionResult<MessagesSubscription>;
 export const AddMessageDocument = gql`
   mutation addMessage($input: MessageInput!) {
     addMessage(input: $input) {

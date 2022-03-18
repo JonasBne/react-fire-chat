@@ -25,3 +25,7 @@ type Mutation {
 type Query {
   messages: [Message!]
 }
+
+type Subscription {
+  messages: [Message!]
+}

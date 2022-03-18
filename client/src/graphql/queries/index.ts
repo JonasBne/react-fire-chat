@@ -13,6 +13,19 @@ export const GET_MESSAGES = gql`
   }
 `;
 
+export const MESSAGES_SUBSCRIPTION = gql`
+  subscription messages {
+    messages {
+      content
+      createdAt
+      userId
+      photoUrl
+      id
+      sender
+    }
+  }
+`;
+
 export const ADD_MESSAGE = gql`
   mutation addMessage($input: MessageInput!) {
     addMessage(input: $input) {
