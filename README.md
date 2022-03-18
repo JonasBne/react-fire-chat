@@ -27,6 +27,9 @@ $ yarn start
 Runs the app in the development mode.
 Open http://localhost:3000 to view it in the browser.
 
+# autogenerates GraphQL types and schema
+$ yarn gql:gen
+
 # build to dist folder
 $ yarn build
 
