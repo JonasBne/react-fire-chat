@@ -11,7 +11,9 @@
     "start": "set NODE_ENV=dev&& nodemon server.js"
   },
   "dependencies": {
+    "@graphql-tools/schema": "^8.3.3",
     "apollo-server": "^3.6.4",
+    "apollo-server-core": "^3.6.4",
     "apollo-server-express": "^3.6.4",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
@@ -19,9 +21,11 @@
     "firebase": "^9.6.8",
     "firebase-admin": "^10.0.2",
     "graphql": "^16.3.0",
+    "graphql-ws": "^5.6.3",
     "node-fetch": "^3.2.3",
     "nodemon": "^2.0.15",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "ws": "^8.5.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0"
