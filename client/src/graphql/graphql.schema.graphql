@@ -1,5 +1,9 @@
 type AddMessagePayload {
-  name: String!
+  content: String!
+  createdAt: String!
+  photoUrl: String!
+  sender: String!
+  userId: String!
 }
 
 type Message {
