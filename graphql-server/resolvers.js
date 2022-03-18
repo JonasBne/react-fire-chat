@@ -13,9 +13,10 @@ const resolvers = {
       try {
         const response = await fetch(`${baseURL}/messages.json`);
         const messages = await response.json();
-        // when adding a message to Firebase db the original array
+        // when adding a message to firebase db the original array
         // is transformed into an object of objects
         // these conditions make sure the query always returns an array of messages
+        // to avoid a server error
         if (messages === typeof Array) {
           return messages;
         } else {
