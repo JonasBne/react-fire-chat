@@ -50,10 +50,6 @@ const Title = styled(Typography)({
 function App() {
   const [user, loading] = useAuthState(auth);
 
-  // todo: check web sockets for auto pulling data when a message is send to the server
-  // TODO; fix auto scroll (with imperative handle?)
-  // TODO; fix loading spinner and errors
-
   return (
     <AppContainer>
       <Header>

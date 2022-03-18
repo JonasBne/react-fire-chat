@@ -13,6 +13,7 @@ import { ADD_MESSAGE, GET_MESSAGES, MESSAGES_SUBSCRIPTION } from '../../graphql/
 
 import SendMessage from './SendMessage';
 import Message from './Message';
+import sortBy from '../../utils/sortBy';
 
 interface ChatRoomProps {
   user: User;
@@ -33,6 +34,7 @@ function ChatRoom({ user }: ChatRoomProps) {
 
   const { data, subscribeToMore } = useQuery<GetMessagesQuery>(GET_MESSAGES);
   const messages = data?.messages ?? [];
+  const sortedMessages = sortBy(messages, '+createdAt');
 
   const [addMessage] = useMutation<AddMessageMutation, AddMessageMutationVariables>(ADD_MESSAGE, {
     refetchQueries: [
@@ -90,8 +92,8 @@ function ChatRoom({ user }: ChatRoomProps) {
   return (
     <>
       <Main>
-        {messages &&
-          messages.map((msg) => (
+        {sortedMessages &&
+          sortedMessages.map((msg) => (
             <Message
               key={`${msg.id}${msg.createdAt}`}
               content={msg.content}

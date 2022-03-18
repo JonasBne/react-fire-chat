@@ -18,7 +18,7 @@ export type Scalars = {
 export type AddMessagePayload = {
   __typename?: 'AddMessagePayload';
   content: Scalars['String'];
-  createdAt: Scalars['String'];
+  createdAt: Scalars['Float'];
   id: Scalars['ID'];
   photoUrl: Scalars['String'];
   sender: Scalars['String'];
@@ -28,7 +28,7 @@ export type AddMessagePayload = {
 export type Message = {
   __typename?: 'Message';
   content: Scalars['String'];
-  createdAt: Scalars['String'];
+  createdAt: Scalars['Float'];
   id: Scalars['ID'];
   photoUrl: Scalars['String'];
   sender: Scalars['String'];
@@ -72,7 +72,7 @@ export type GetMessagesQuery = {
     sender: string;
     userId: string;
     photoUrl: string;
-    createdAt: string;
+    createdAt: number;
   }> | null;
 };
 
@@ -87,7 +87,7 @@ export type MessagesSubscription = {
     photoUrl: string;
     sender: string;
     userId: string;
-    createdAt: string;
+    createdAt: number;
   };
 };
 
@@ -104,7 +104,7 @@ export type AddMessageMutation = {
     sender: string;
     userId: string;
     photoUrl: string;
-    createdAt: string;
+    createdAt: number;
   };
 };
 
