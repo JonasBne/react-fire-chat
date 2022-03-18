@@ -37,6 +37,8 @@ const resolvers = {
   },
   Mutation: {
     addMessage: async (root, { input }) => {
+      const messageId = uuidv4();
+
       try {
         const response = await fetch(`${baseURL}/messages.json`, {
           method: 'POST',
@@ -46,7 +48,7 @@ const resolvers = {
           },
           body: JSON.stringify({
             content: input.content,
-            id: uuidv4(),
+            id: messageId,
             sender: input.sender,
             photoUrl: input.photoUrl,
             userId: input.userId,
@@ -62,11 +64,13 @@ const resolvers = {
             sender: input.sender,
             photoUrl: input.photoUrl,
             userId: input.userId,
+            id: messageId,
           },
         });
 
         return {
           content: input.content,
+          id: messageId,
           sender: input.sender,
           photoUrl: input.photoUrl,
           userId: input.userId,

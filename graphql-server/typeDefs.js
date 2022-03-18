@@ -2,6 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type CreatedMessage {
+    id: ID!
     content: String!
     sender: String!
     userId: String!
@@ -24,6 +25,7 @@ const typeDefs = gql`
   }
 
   type AddMessagePayload {
+    id: ID!
     sender: String!
     content: String!
     userId: String!
