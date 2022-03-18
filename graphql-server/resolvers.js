@@ -1,9 +1,12 @@
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const admin = require('firebase-admin');
 const { v4: uuidv4 } = require('uuid');
+const { PubSub } = require('graphql-subscriptions');
 require('dotenv').config();
 
 const baseURL = process.env.REACT_APP_DATABASE_URL;
+
+const pubsub = new PubSub();
 
 //TODO: provide better error feedback
 
@@ -50,12 +53,25 @@ const resolvers = {
             createdAt: new Date().getTime().toString(),
           }),
         });
-        const name = await response.json();
+        // const name = await response.json();
 
-        return name;
+        // pubsub.publish('MESSAGE_ADDED')
+        return {
+          content: input.content,
+          sender: input.sender,
+          photoUrl: input.photoUrl,
+          userId: input.userId,
+          createdAt: new Date().getTime().toString(),
+        };
       } catch (err) {
         console.error(`problem when trying to add a message. Error: ${err}`);
       }
+    },
+  },
+  // TODO: remove pubsub and change https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries
+  Subscription: {
+    messages: {
+      subscribe: () => pubsub.asyncIterator(['MESSAGES_SUBSCRIPTION']),
     },
   },
 };

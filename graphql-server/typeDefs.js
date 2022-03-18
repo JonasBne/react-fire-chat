@@ -17,7 +17,11 @@ const typeDefs = gql`
   }
 
   type AddMessagePayload {
-    name: String!
+    sender: String!
+    content: String!
+    userId: String!
+    photoUrl: String!
+    createdAt: String!
   }
 
   type Query {
